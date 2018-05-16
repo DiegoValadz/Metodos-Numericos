@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.JacobiFragment">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/autor_text"
+            android:text="@string/name_autor"
+            android:textAlignment="center"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:textColor="#FDFEFE"
+            android:textStyle="italic"
+            android:textSize="15sp"
+            android:elevation="15dp"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:paddingLeft="60dp"
+
+            android:background="@color/colorPrimaryLight"
+            android:layout_gravity="center"
+            android:text="Introduce los valores iniciales"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x1="/>
+
+            <EditText
+                android:id="@+id/val_ini_1"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal|numberSigned"
+                android:layout_height="wrap_content"
+                android:hint="V. inicial"/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x2="/>
+
+
+            <EditText
+                android:id="@+id/val_ini_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:layout_weight="1"
+
+                android:hint="V. inicial"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x3="/>
+
+            <EditText
+                android:id="@+id/val_ini_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:layout_weight="1"
+
+                android:hint="V. inicial"/>
+
+        </LinearLayout>
+
+        <!-- AQUI EMPIEZA LA PRIMERA PARTE
+        /////////////////////////////////////
+        /////////////////////////////////////-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:background="@color/colorPrimaryLight"
+
+            android:paddingLeft="75dp"
+            android:text="Introduce los coeficientes"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+
+
+                android:text="X1= ("/>
+
+
+            <EditText
+                android:id="@+id/sol_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="res"
+                />
+
+
+            <TextView
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" +/- "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x2_1"
+                android:layout_width="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:layout_height="wrap_content"
+                android:hint="(a)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x^2 +/- "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="(a)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x^3) /"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x1_1"
+                android:layout_width="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:layout_height="wrap_content"
+                android:hint="(a)"/>
+        </LinearLayout>
+
+        <View
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:background="#000000" />
+
+
+
+        <!-- AQUI EMPIEZA LA SEGUNDA PARTE
+        /////////////////////////////////////
+        /////////////////////////////////////-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+
+
+                android:text="X2= ("/>
+
+
+            <EditText
+                android:id="@+id/sol_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="res"
+                />
+
+
+            <TextView
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" +/- "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="(a)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x^1 +/- "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="(a)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x^3) /"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="(a)"/>
+        </LinearLayout>
+
+        <View
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:background="#000000" />
+
+        <!-- AQUI EMPIEZA LA TERCERA PARTE
+         /////////////////////////////////////
+         /////////////////////////////////////-->
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+
+
+                android:text="X3= ("/>
+
+
+            <EditText
+                android:id="@+id/sol_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="res"
+                />
+
+
+            <TextView
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" +/- "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x1_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="(a)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x^1 +/- "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x2_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="(a)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x^2) /"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/x3_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="(a)"/>
+        </LinearLayout>
+
+        <View
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:background="#000000" />
+        <View
+            android:layout_margin="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="10dip"
+             />
+
+        <Button
+            android:id="@+id/calcular_jacobi"
+            android:text="Calcular iteraciones"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:background="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
+    </LinearLayout>
+
+</ScrollView>
