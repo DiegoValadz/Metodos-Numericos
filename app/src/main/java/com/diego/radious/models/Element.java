@@ -1,8 +1,5 @@
 package com.diego.radious.models;
 
-
-import android.graphics.drawable.Drawable;
-
 /**
  * Created by diego on 18/02/2018.
  */
@@ -63,8 +60,4 @@ public class Element {
     public String getDescription() {
         return description;
     }
-
-
-
-
 }

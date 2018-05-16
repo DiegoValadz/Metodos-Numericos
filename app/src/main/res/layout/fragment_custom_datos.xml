@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.diego.radious.fragments.BiseccionDatosFragment">
+    tools:context="com.diego.radious.fragments.CustomDatosFragment">
 
 
 <LinearLayout
@@ -27,6 +27,7 @@
 
 
     <TextView
+        android:id="@+id/header"
         android:text="Introduce los datos"
         android:textStyle="italic"
         android:textAlignment="center"
@@ -49,6 +50,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/subtitle"
                 android:text="Intervalo"
                 android:textStyle="bold"
                 android:layout_width="match_parent"

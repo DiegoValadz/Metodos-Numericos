@@ -5,35 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.diego.radious.R;
 import com.diego.radious.controllers.Biseccion;
 import com.diego.radious.controllers.Iteracion;
-
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by diego on 31/03/2018.
- */
+public class BiseccionAdapter extends RecyclerView.Adapter<BiseccionAdapter.BiseccionVH> {
 
-public class BiseccionAdapter extends RecyclerView.Adapter<BiseccionAdapter.BiseccionVH>{
-
-    private Biseccion biseccion;
-    private List<Iteracion> iteracionList = new ArrayList<>();
+    private List<Iteracion> iteracionList;
 
     public BiseccionAdapter(Biseccion biseccion) {
-        this.biseccion = biseccion;
         this.iteracionList = biseccion.getIteracionList();
     }
 
     @Override
     public BiseccionVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_iter_rv,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_iter_rv, parent, false);
         BiseccionVH vh = new BiseccionVH(v);
-
-
         return vh;
     }
 
@@ -59,7 +48,8 @@ public class BiseccionAdapter extends RecyclerView.Adapter<BiseccionAdapter.Bise
     }
 
     public class BiseccionVH extends RecyclerView.ViewHolder {
-        private TextView i,a,fa,b,fb,m,fm,ea;
+        private TextView i, a, fa, b, fb, m, fm, ea;
+
         public BiseccionVH(View itemView) {
             super(itemView);
 
@@ -71,10 +61,6 @@ public class BiseccionAdapter extends RecyclerView.Adapter<BiseccionAdapter.Bise
             m = itemView.findViewById(R.id.item_m);
             fm = itemView.findViewById(R.id.item_fm);
             ea = itemView.findViewById(R.id.item_ea);
-
-
-
-
         }
     }
 }

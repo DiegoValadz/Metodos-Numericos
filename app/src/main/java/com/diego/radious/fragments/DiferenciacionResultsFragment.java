@@ -1,39 +1,32 @@
 package com.diego.radious.fragments;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.diego.radious.R;
 import com.diego.radious.controllers.DiferenciacionNumerica;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class DiferenciacionResultsFragment extends Fragment {
 
-
-    private TextView xi,h,xMenosH,xMasH,zero0,zero1,uno0,uno1,dos0,dos1,difDel,difAtras,difCen;
-
-
-
+    private TextView xi,h,xMenosH,xMasH,zero0,zero1,uno0;
+    private TextView uno1,dos0,dos1,difDel,difAtras,difCen;
     private DiferenciacionNumerica aproxDif;
 
-
-    public DiferenciacionResultsFragment() {
-        // Required empty public constructor
-    }
-
+    public DiferenciacionResultsFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_diferenciacion_results, container, false);
         bindUI(v);
+        deployResults();
+        return v;
+    }
+
+    private void deployResults() {
         xi.setText(String.valueOf(aproxDif.getXi()));
         h.setText(String.valueOf(aproxDif.getH()));
         xMenosH.setText(String.valueOf(aproxDif.getXiMenosH()));
@@ -47,9 +40,6 @@ public class DiferenciacionResultsFragment extends Fragment {
         difDel.setText(String.valueOf(aproxDif.getDifAdelante()));
         difAtras.setText(String.valueOf(aproxDif.getDifAtras()));
         difCen.setText(String.valueOf(aproxDif.getDifCentral()));
-
-
-        return v;
     }
 
     private void bindUI(View v) {

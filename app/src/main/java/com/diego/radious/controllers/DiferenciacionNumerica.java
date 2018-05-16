@@ -6,7 +6,7 @@ public class DiferenciacionNumerica {
     private double difAdelante,difAtras,difCentral;
     private double[] ec;
 
-    public DiferenciacionNumerica(double xi, double[] ec, double h) {
+    public DiferenciacionNumerica(double xi, double h, double[] ec) {
         this.xi = xi;
         this.h = h;
         this.ec=ec;

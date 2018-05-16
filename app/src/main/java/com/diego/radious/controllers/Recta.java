@@ -1,9 +1,5 @@
 package com.diego.radious.controllers;
 
-/**
- * Created by diego on 15/02/2018.
- */
-
 public class Recta {
     private double radio;
     private double angulo;
@@ -14,6 +10,8 @@ public class Recta {
         this.radio = radio;
         this.angulo = angulo;
         this.punto = punto;
+        calcularRadio();
+        calcularAngulo();
     }
 
     public Recta(Punto punto) {
@@ -28,18 +26,16 @@ public class Recta {
         //if (punto.getX()!=0.0&&punto.getY()!=0)
         this.angulo = Math.atan(punto.getY()/punto.getX());
         //else
-         //   this.angulo = 90;
+         //this.angulo = 90;
     }
 
     public Punto getPunto() {
         return punto;
     }
 
-
     public String toStringRadio() {
          return "r = " + radio;
     }
-
 
     public String toStringAngulo() {
         if(Double.isNaN(angulo))
@@ -47,4 +43,6 @@ public class Recta {
         else
         return "Ángulo en Radianes = " + angulo +"\nÁngulo en Degrees = "+((angulo)*180)/Math.PI;
     }
+
+
 }

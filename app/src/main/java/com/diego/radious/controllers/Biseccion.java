@@ -9,6 +9,7 @@ import java.util.List;
 public class Biseccion extends Metodo {
     public Biseccion(double a, double b, double[] coef) {
         super(a, b, coef);
+        calcularIteraciones();
     }
 
     @Override

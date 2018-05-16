@@ -5,7 +5,7 @@ package com.diego.radious.controllers;
  */
 
 public class Punto {
-    private double x,y;
+    private double x, y;
 
     public Punto(double x, double y) {
         this.x = x;
@@ -16,16 +16,8 @@ public class Punto {
         return x;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
     public double getY() {
         return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
     }
 
     @Override

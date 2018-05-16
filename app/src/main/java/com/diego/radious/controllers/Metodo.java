@@ -9,12 +9,14 @@ import java.util.List;
 
 public abstract class Metodo {
     final double ES = 0.05;
-    double a,b,m,eA=2000;
+    double a, b, m, eA = 2000;
     double coef[];
     List<Iteracion> iteracionList = new ArrayList<>();
 
-    public double getES() {
-        return ES;
+    public Metodo(double a, double b, double[] coef) {
+        this.a = a;
+        this.b = b;
+        this.coef = coef;
     }
 
     public double getA() {
@@ -25,54 +27,9 @@ public abstract class Metodo {
         this.a = a;
     }
 
-    public double getB() {
-        return b;
-    }
-
-    public void setB(double b) {
-        this.b = b;
-    }
-
-    public double getM() {
-        return m;
-    }
-
-    public void setM(double m) {
-        this.m = m;
-    }
-
-    public double geteA() {
-        return eA;
-    }
-
-    public void seteA(double eA) {
-        this.eA = eA;
-    }
-
-
-
-    public double[] getCoef() {
-        return coef;
-    }
-
-    public void setCoef(double[] coef) {
-        this.coef = coef;
-    }
-
     public List<Iteracion> getIteracionList() {
         return iteracionList;
     }
 
-    public void setIteracionList(List<Iteracion> iteracionList) {
-        this.iteracionList = iteracionList;
-    }
-
-    public Metodo(double a, double b, double[] coef) {
-        this.a = a;
-        this.b = b;
-        this.coef = coef;
-    }
-
     public abstract void calcularIteraciones();
-
 }

@@ -16,27 +16,52 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.diego.radious.R;
 import com.diego.radious.controllers.Biseccion;
+import com.diego.radious.controllers.DiferenciacionNumerica;
+import com.diego.radious.utilities.MyAppUtilities;
 
-public class BiseccionDatosFragment extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class CustomDatosFragment extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener {
 
     private Spinner spinner;
-    private TextView ind_txt,x1_txt,x2_txt,x3_txt,x4_txt,x5_txt,x6_txt,x7_txt;
+    private TextView ind_txt,x1_txt,x2_txt,x3_txt,x4_txt,x5_txt,x6_txt,x7_txt,hdr,sbtt;
     private EditText ind_edt,x1_edt,x2_edt,x3_edt,x4_edt,x5_edt,x6_edt,x7_edt,a_edt,b_edt;
     private Button calcular;
 
-    public BiseccionDatosFragment() {
-        // Required empty public constructor
-    }
+    public CustomDatosFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View v = inflater.inflate(R.layout.fragment_biseccion_datos, container, false);
+       View v = inflater.inflate(R.layout.fragment_custom_datos, container, false);
        bindUI(v);
+       if(getArguments()!=null){
+           int selector = getArguments().getInt("id");
+           customUI(selector);
+       }
     return v;
     }
 
+    private void customUI(int selector) {
+        switch (selector){
+            case 3:
+                hdr.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                sbtt.setText("Valores");
+                a_edt.setHint("Xi");
+                b_edt.setHint("h");
+                break;
+        }
+    }
+
+    public static CustomDatosFragment newInstance(Bundle arguments){
+        CustomDatosFragment aux = new CustomDatosFragment();
+        if(arguments != null){
+            aux.setArguments(arguments);
+        }
+        return aux;
+    }
+
     private void bindUI(View v) {
+        hdr =  v.findViewById(R.id.header);
+        sbtt =  v.findViewById(R.id.subtitle);
         spinner =  v.findViewById(R.id.spinner_biseccion);
         ind_txt = v.findViewById(R.id.ind_txt);
         x1_txt = v.findViewById(R.id.x_txt);
@@ -68,7 +93,6 @@ public class BiseccionDatosFragment extends Fragment implements AdapterView.OnIt
         spinner.setOnItemSelectedListener(this);
         calcular.setOnClickListener(this);
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -113,7 +137,6 @@ public class BiseccionDatosFragment extends Fragment implements AdapterView.OnIt
                 anim = animarBoton();
                 calcular.setVisibility(View.VISIBLE);
                 anim.start();
-
                 break;
             case 2:
                 ind_txt.setVisibility(View.VISIBLE);
@@ -178,8 +201,6 @@ public class BiseccionDatosFragment extends Fragment implements AdapterView.OnIt
                 anim = animarBoton();
                 calcular.setVisibility(View.VISIBLE);
                 anim.start();
-
-
                 break;
             case 5:
                 ind_txt.setVisibility(View.VISIBLE);
@@ -201,7 +222,6 @@ public class BiseccionDatosFragment extends Fragment implements AdapterView.OnIt
                 anim = animarBoton();
                 calcular.setVisibility(View.VISIBLE);
                 anim.start();
-
                 break;
             case 6:
                 ind_txt.setVisibility(View.VISIBLE);
@@ -256,24 +276,13 @@ public class BiseccionDatosFragment extends Fragment implements AdapterView.OnIt
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 
     @Override
     public void onClick(View v) {
         obtenerInput();
     }
 
-    private void reemplazarFragment(Biseccion biseccion) {
-        BiseccionResultsFragment brf = new BiseccionResultsFragment();
-        brf.setBiseccion(biseccion);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_main,brf)
-                .addToBackStack(null)
-                .commit();
-    }
 
     private void obtenerInput() {
         double ind = 0, x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0, x6 = 0,x7=0, a, b;
@@ -299,17 +308,25 @@ public class BiseccionDatosFragment extends Fragment implements AdapterView.OnIt
 
             a = Double.parseDouble(a_edt.getText().toString());
             b = Double.parseDouble(b_edt.getText().toString());
-
             /*Toast.makeText(getContext(), "ind= " + ind + "\nx1= " + x1 + "\nx2= " + x2 + "\nx3= " + x3
                     + "\nx4= " + x4 + "\nx5= " + x5 + "\nx6= " + x6 +"\nx7= " + x7 +
                     "\na=" + a + "\nb=" + b, Toast.LENGTH_LONG).show();*/
-
-            Toast.makeText(getContext(), "Raíz calculada", Toast.LENGTH_LONG).show();
             double terminos[] = {ind, x1, x2, x3,x4,x5,x6,x7};
+            if(getArguments().getInt("id")==1){
+                Toast.makeText(getContext(), "Raíz calculada", Toast.LENGTH_SHORT).show();
+                Biseccion biseccion = new Biseccion(a, b, terminos);
+                BiseccionResultsFragment brf = new BiseccionResultsFragment();
+                brf.setBiseccion(biseccion);
+                MyAppUtilities.changeFragment(R.id.container_main,brf,getContext(),MyAppUtilities.REPLACE,"Main_Fragment");
+            }
 
-            Biseccion biseccion = new Biseccion(a, b, terminos);
-            biseccion.calcularIteraciones();
-            reemplazarFragment(biseccion);
+            if(getArguments().getInt("id")==3){
+                Toast.makeText(getContext(), "Diferenciacion Realizada", Toast.LENGTH_SHORT).show();
+                DiferenciacionNumerica diferenciacion = new DiferenciacionNumerica(a, b, terminos);
+                DiferenciacionResultsFragment drf = new DiferenciacionResultsFragment();
+                drf.setAproxDif(diferenciacion);
+                MyAppUtilities.changeFragment(R.id.container_main,drf,getContext(),MyAppUtilities.REPLACE,"Main_Fragment");
+            }
 
         } catch (Exception e) {
             Toast.makeText(getContext(), "Llena los campos vacios con \"0\" o utiliza menos campos \nNo olvides introducir un " +

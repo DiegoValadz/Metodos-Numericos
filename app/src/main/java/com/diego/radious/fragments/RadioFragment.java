@@ -1,6 +1,5 @@
 package com.diego.radious.fragments;
 
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,40 +12,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.diego.radious.R;
 import com.diego.radious.adapters.RadioAdapter;
 import com.diego.radious.controllers.Punto;
 import com.diego.radious.controllers.Recta;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RadioFragment extends Fragment {
 
     private List<Recta> rectas = new ArrayList<>();
     private List<Punto> punto= new ArrayList<>();
     private FloatingActionButton fab;
+    private RecyclerView recyclerView;
 
-    public RadioFragment() {
-        // Required empty public constructor
-    }
-
+    public RadioFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_radio, container, false);
-        asignarValores(rectas);
-        final RecyclerView recyclerView = v.findViewById(R.id.radio_rv);
+        asignarValores();
+        recyclerView = v.findViewById(R.id.radio_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         RadioAdapter radioAdapter = new RadioAdapter(rectas);
         recyclerView.setAdapter(radioAdapter);
         fab = v.findViewById(R.id.float_btn);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,24 +66,17 @@ public class RadioFragment extends Fragment {
                 }
             }
         });
-
         builder.create();
         builder.show();
-
-
-
     }
 
     private void agregarNuevo(double x,double y) {
-
         Punto puntoAux= new Punto(x,y);
         Recta rectaAux = new Recta(puntoAux);
-        rectaAux.calcularRadio();
-        rectaAux.calcularAngulo();
-        this.rectas.add(rectaAux);
+        rectas.add(rectaAux);
     }
 
-    private void asignarValores(List<Recta> rectas){
+    private void asignarValores(){
        /* Punto[] punto= new Punto[9];
         punto[0] = new Punto(1,0);
         punto[1] = new Punto(1,1);
@@ -107,7 +91,6 @@ public class RadioFragment extends Fragment {
         for(int i=0; i<punto.length;i++)
         rectas.add(new Recta(punto[i]));*/
 
-
         punto.add(new Punto(1,0));
         punto.add(new Punto(1,1));
         punto.add(new Punto(0,1));
@@ -118,18 +101,7 @@ public class RadioFragment extends Fragment {
         punto.add(new Punto(1,-1));
         punto.add(new Punto(0,0));
 
-
-
         for(int i=0; i<punto.size();i++)
             rectas.add(new Recta(punto.get(i)));
-
-
-        for(int i=0;i<rectas.size();i++ ){
-
-            rectas.get(i).calcularRadio();
-            rectas.get(i).calcularAngulo();
-        }
-        this.rectas=rectas;
     }
-
 }
