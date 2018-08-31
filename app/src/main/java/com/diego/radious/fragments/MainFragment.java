@@ -43,8 +43,9 @@ public class MainFragment extends Fragment {
         elements.add(new Element("Programa N°3", "Método de Jacobi"));
         elements.add(new Element("Programa N°4", "Método de Diferenciación numérica"));
         elements.add(new Element("Programa N°5", "Método trapezoidal"));
-        elements.add(new Element("Programa N°6", "Método de Simpson"));
-        elements.add(new Element("Programa N°7", "Método rectangular "));
-        elements.add(new Element("Programa N°8", "Método parabolico"));
+        elements.add(new Element("Programa N°6", "Método parabolico (Experimental)"));
+        elements.add(new Element("Programa N°7", "Método de LaGrange"));
+
+
     }
 }

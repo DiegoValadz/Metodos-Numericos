@@ -11,13 +11,15 @@ import android.widget.TextView;
 import com.diego.radious.R;
 import com.diego.radious.fragments.CustomDatosFragment;
 import com.diego.radious.fragments.JacobiFragment;
+import com.diego.radious.fragments.LaGrangeFragment;
 import com.diego.radious.fragments.MainFragment;
 import com.diego.radious.fragments.RadioFragment;
 import com.diego.radious.models.Element;
 import com.diego.radious.utilities.MyAppUtilities;
 import java.util.List;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
+public class
+MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
 
     private Context context;
     private List<Element> elements;
@@ -81,6 +83,19 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
                     bundle = new Bundle();
                     bundle.putInt("id", getAdapterPosition());
                     fragmentAux = CustomDatosFragment.newInstance(bundle);
+                    break;
+                case 4:
+                    bundle = new Bundle();
+                    bundle.putInt("id", getAdapterPosition());
+                    fragmentAux = CustomDatosFragment.newInstance(bundle);
+                    break;
+                case 5:
+                    bundle = new Bundle();
+                    bundle.putInt("id", getAdapterPosition());
+                    fragmentAux = CustomDatosFragment.newInstance(bundle);
+                    break;
+                case 6:
+                    fragmentAux = new LaGrangeFragment();
                     break;
                 default:
                     fragmentAux = new MainFragment();

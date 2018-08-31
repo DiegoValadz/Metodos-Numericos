@@ -11,20 +11,26 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.diego.radious.R;
 import com.diego.radious.controllers.Biseccion;
 import com.diego.radious.controllers.DiferenciacionNumerica;
+import com.diego.radious.controllers.Parabolico;
+import com.diego.radious.controllers.Trapezoidal;
 import com.diego.radious.utilities.MyAppUtilities;
 
 public class CustomDatosFragment extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener {
 
     private Spinner spinner;
     private TextView ind_txt,x1_txt,x2_txt,x3_txt,x4_txt,x5_txt,x6_txt,x7_txt,hdr,sbtt;
-    private EditText ind_edt,x1_edt,x2_edt,x3_edt,x4_edt,x5_edt,x6_edt,x7_edt,a_edt,b_edt;
+    private EditText ind_edt,x1_edt,x2_edt,x3_edt,x4_edt,x5_edt,x6_edt,x7_edt,a_edt,b_edt,aux_edt,aux_2;
     private Button calcular;
+    private RadioGroup group;
+    private RadioButton impar,par;
 
     public CustomDatosFragment() {}
 
@@ -48,6 +54,19 @@ public class CustomDatosFragment extends Fragment implements AdapterView.OnItemS
                 a_edt.setHint("Xi");
                 b_edt.setHint("h");
                 break;
+            case 4:
+                hdr.setBackgroundColor(getResources().getColor(R.color.colorPrimaryText));
+                sbtt.setText("Valores");
+                aux_edt.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+                hdr.setBackgroundColor(getResources().getColor(R.color.colorDdivider));
+                aux_edt.setVisibility(View.VISIBLE);
+                aux_2.setVisibility(View.VISIBLE);
+                group.setVisibility(View.VISIBLE);
+
+                break;
+
         }
     }
 
@@ -84,7 +103,14 @@ public class CustomDatosFragment extends Fragment implements AdapterView.OnItemS
 
         a_edt= v.findViewById(R.id.a_edt);
         b_edt = v.findViewById(R.id.b_edt);
+        aux_edt = v.findViewById(R.id.aux_edt);
+        aux_2 = v.findViewById(R.id.aux2_edt);
+
         calcular = v.findViewById(R.id.boton_biseccion);
+        group = v.findViewById(R.id.group_radios);
+        impar = v.findViewById(R.id.impar);
+        par = v.findViewById(R.id.par);
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.spinner_array, android.R.layout.simple_spinner_item);
@@ -285,7 +311,7 @@ public class CustomDatosFragment extends Fragment implements AdapterView.OnItemS
 
 
     private void obtenerInput() {
-        double ind = 0, x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0, x6 = 0,x7=0, a, b;
+        double ind = 0, x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0, x6 = 0,x7=0, a, b,aux,aux2;
 
 
         try {
@@ -308,10 +334,14 @@ public class CustomDatosFragment extends Fragment implements AdapterView.OnItemS
 
             a = Double.parseDouble(a_edt.getText().toString());
             b = Double.parseDouble(b_edt.getText().toString());
+
             /*Toast.makeText(getContext(), "ind= " + ind + "\nx1= " + x1 + "\nx2= " + x2 + "\nx3= " + x3
                     + "\nx4= " + x4 + "\nx5= " + x5 + "\nx6= " + x6 +"\nx7= " + x7 +
                     "\na=" + a + "\nb=" + b, Toast.LENGTH_LONG).show();*/
             double terminos[] = {ind, x1, x2, x3,x4,x5,x6,x7};
+
+
+
             if(getArguments().getInt("id")==1){
                 Toast.makeText(getContext(), "Raíz calculada", Toast.LENGTH_SHORT).show();
                 Biseccion biseccion = new Biseccion(a, b, terminos);
@@ -326,6 +356,39 @@ public class CustomDatosFragment extends Fragment implements AdapterView.OnItemS
                 DiferenciacionResultsFragment drf = new DiferenciacionResultsFragment();
                 drf.setAproxDif(diferenciacion);
                 MyAppUtilities.changeFragment(R.id.container_main,drf,getContext(),MyAppUtilities.REPLACE,"Main_Fragment");
+            }
+
+            if(getArguments().getInt("id")==4){
+                aux = Double.parseDouble(aux_edt.getText().toString());
+                Toast.makeText(getContext(), "Integral calculada", Toast.LENGTH_SHORT).show();
+                Trapezoidal trap = new Trapezoidal(a, b, aux,terminos);
+                Bundle bundle = new Bundle();
+                bundle.putInt("res",getArguments().getInt("id"));
+                TrapezoidalResultsFragment trf = TrapezoidalResultsFragment.newInstance(bundle);
+                trf.setTrapezoidal(trap);
+                MyAppUtilities.changeFragment(R.id.container_main,trf,getContext(),MyAppUtilities.REPLACE,"Main_Fragment");
+            }
+
+            if(getArguments().getInt("id")==5){
+                aux = Double.parseDouble(aux_edt.getText().toString());
+                aux2=Double.parseDouble(aux_2.getText().toString());
+                Toast.makeText(getContext(), "Integral calculada", Toast.LENGTH_SHORT).show();
+
+                Parabolico parabolico;
+
+                                    parabolico = new Parabolico(a, b, aux, terminos,aux2);
+                                if (par.isChecked()){
+                    parabolico.calcularIntegral(1);
+                }
+                if (impar.isChecked()){
+                    parabolico.calcularIntegral(2);
+                }
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("res",getArguments().getInt("id"));
+                TrapezoidalResultsFragment trf = TrapezoidalResultsFragment.newInstance(bundle);
+                trf.setParabolico(parabolico);
+                MyAppUtilities.changeFragment(R.id.container_main,trf,getContext(),MyAppUtilities.REPLACE,"Main_Fragment");
             }
 
         } catch (Exception e) {

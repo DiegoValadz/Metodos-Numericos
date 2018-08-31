@@ -19,6 +19,10 @@ public abstract class Metodo {
         this.coef = coef;
     }
 
+    public Metodo() {
+
+    }
+
     public double getA() {
         return a;
     }

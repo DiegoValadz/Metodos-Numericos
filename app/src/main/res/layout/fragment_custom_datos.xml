@@ -67,6 +67,20 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned|numberDecimal"
                 android:hint="b="/>
+            <EditText
+                android:id="@+id/aux_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned|numberDecimal"
+                android:hint="delta="
+                android:visibility="gone"/>
+            <EditText
+                android:id="@+id/aux2_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned|numberDecimal"
+                android:hint="n="
+                android:visibility="gone"/>
 
 
         </LinearLayout>
@@ -90,6 +104,26 @@
                android:layout_height="wrap_content">
 
            </Spinner>
+            <RadioGroup
+                android:id="@+id/group_radios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+                <RadioButton
+                    android:id="@+id/par"
+                    android:checked="true"
+                    android:text="Par"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/impar"
+                    android:text="Impar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+            </RadioGroup>
 
         </LinearLayout>
 
